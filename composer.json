@@ -1,5 +1,5 @@
 {
-    "name": "nourallah/OneSignalNotifier",
+    "name": "nourallah/onesignalnotifier",
     "description": "generate and verifiy OneSignalNotifier with limit",
     "type": "library",
     "license": "MIT",
