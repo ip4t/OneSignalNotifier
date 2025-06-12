@@ -1,0 +1,27 @@
+{
+    "name": "nourallah/OneSignalNotifier",
+    "description": "generate and verifiy OneSignalNotifier with limit",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Nourallah\\OneSignalNotifier\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ip4t",
+            "email": "info@ip4t.net"
+        }
+    ],
+    "require": {
+        "nourallah/smsmanager": "*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nourallah\\OneSignalNotifier\\OneSignalNotifierServiceProvider"
+            ]
+        }
+    }
+}
