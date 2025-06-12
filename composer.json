@@ -14,9 +14,7 @@
             "email": "info@ip4t.net"
         }
     ],
-    "require": {
-        "nourallah/smsmanager": "*"
-    },
+    "require": {},
     "extra": {
         "laravel": {
             "providers": [
