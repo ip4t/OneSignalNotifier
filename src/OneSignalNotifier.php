@@ -11,8 +11,11 @@ class OneSignalNotifier
 
     public function __construct()
     {
+
         $this->appId = config('onesignal.app_id');
         $this->apiKey = config('onesignal.rest_api_key');
+        $this->endpointUrl = config('onesignal.endpointUrl');
+
     }
 
     /**
@@ -44,12 +47,24 @@ class OneSignalNotifier
      */
     public function sendToUser(string $playerId, array|string $messages, array $data = []): array
     {
+
         $contents = $this->prepareContents($messages);
 
         return $this->send([
             'include_player_ids' => [$playerId],
             'contents' => $contents,
-            'data' => $data,
+            'data' => is_array($data) ? $data : [],
+        ]);
+    }
+
+    public function sendToUsers(array $playerIds, array|string $messages, array $data = []): array
+    {
+
+        $contents = $this->prepareContents($messages);
+        return $this->send([
+            'include_player_ids' => $playerIds,
+            'contents' => $contents,
+            'data' => is_array($data) ? $data : [],
         ]);
     }
 
@@ -78,12 +93,17 @@ class OneSignalNotifier
      */
     protected function send(array $payload): array
     {
+
         $payload['app_id'] = $this->appId;
+
+        if (isset($payload['data']) && is_array($payload['data'])) {
+            $payload['data'] = (object) $payload['data'];
+        }
 
         $response = Http::withHeaders([
             'Authorization' => 'Basic ' . $this->apiKey,
             'Content-Type' => 'application/json',
-        ])->post('https://onesignal.com/api/v1/notifications', $payload);
+        ])->post($this->endpointUrl, $payload);
 
         return $response->successful()
             ? $response->json()

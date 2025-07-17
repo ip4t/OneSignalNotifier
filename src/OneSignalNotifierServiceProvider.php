@@ -12,11 +12,10 @@ class OneSignalNotifierServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/onesignal.php', 'onesignal');
 
-        $this->app->singleton('onesignal-notifier', function () {
-            return new OneSignalNotifier();
-        });
+        /*  $this->app->singleton('onesignal-notifier', function () {
+              return new OneSignalNotifier();
+          });*/
     }
-
     public function boot()
     {
         $this->publishes([
