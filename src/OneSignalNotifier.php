@@ -8,14 +8,14 @@ class OneSignalNotifier
 {
     protected string $appId;
     protected string $apiKey;
+    protected string $endpointUrl;
 
-    public function __construct()
+
+    public function __construct(?string $appId = null, ?string $apiKey = null)
     {
-
-        $this->appId = config('onesignal.app_id');
-        $this->apiKey = config('onesignal.rest_api_key');
-        $this->endpointUrl = config('onesignal.endpointUrl');
-
+        $this->appId = $appId ?? config('onesignal.app_id');
+        $this->apiKey = $apiKey ?? config('onesignal.rest_api_key');
+        $this->endpointUrl = config('onesignal.endpointUrl', 'https://onesignal.com/api/v1/notifications');
     }
 
     /**
