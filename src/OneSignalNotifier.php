@@ -61,6 +61,11 @@ class OneSignalNotifier
     {
 
         $contents = $this->prepareContents($messages);
+        dd([
+            'include_player_ids' => $playerIds,
+            'contents' => $contents,
+            'data' => is_array($data) ? $data : [],
+        ]);
         return $this->send([
             'include_player_ids' => $playerIds,
             'contents' => $contents,

@@ -2,6 +2,7 @@
     "name": "nourallah/onesignalnotifier",
     "description": "generate and verifiy OneSignalNotifier with limit",
     "type": "library",
+    "version": "1.0.1",
     "license": "MIT",
     "autoload": {
         "psr-4": {
